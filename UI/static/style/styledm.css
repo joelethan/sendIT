@@ -1,0 +1,153 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: #3d9aa7;
+    
+    background-attachment:fixed;
+    background-size: cover;
+}
+
+button{
+    background: transparent;
+    border: none;
+    outline: none;
+    color: black;
+    background-color: #00bcd4;
+    padding: 5px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+td input{
+    background-color: transparent;
+    color: white;
+    border-bottom: 1px solid black;
+    border: none;
+    outline: none;
+    font-size: 18px;
+}
+td input:hover, td input:focus{
+    background-color: wheat;
+    color: black;
+    border-radius: 4px;
+}
+
+tr:nth-child(even) {
+    background-color: #3d9aa7;
+}
+
+
+
+.topnav {
+    padding: 30px 0;
+    background: rgba(0, 0, 0,.7);
+	width: 100%;
+    color: #fff;
+    position: fixed;
+    top: 0;
+}
+.topnav .links{
+   margin-left: 16px;
+}
+.topnav a{
+    padding: 10px 10px;
+    text-decoration: none;
+    display: inline;
+    background-color: #00bcd4;
+    border-radius: 5px;
+}
+.heada{
+    margin: 100px 10% 20px 10%;
+    width: 80%;
+    padding: 20px 40px ;
+    background: rgba(0, 0, 0,.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 15px rgba(0, 0, 0,.5);
+    border-radius: 15px;
+    text-align: center;
+    color: #fff;
+}
+.heada h2{
+    font-size: 40px;
+    color: #00bcd4;
+}.heada h3{
+    margin-top: -30px;
+    font-size: 25px;
+    color: #00bcd4;
+}
+.heada a{
+    text-decoration: none;
+}
+.btn-logout{
+    float: right;
+    margin-right: 16px;
+}
+.detail{
+    margin: 50px 5%;
+    width: 90%;
+    padding: 20px 20px ;
+    background: rgba(0, 0, 0,.6);
+    box-sizing: border-box;
+    box-shadow: 0 15px 15px rgba(0, 0, 0,.5);
+    border-radius: 10px;
+    color:  white;
+    text-align: left;
+}
+.quarter{
+    width: 25%;
+    float: left;
+    text-align: center;
+}
+.detail li{
+    list-style: none;
+}
+.left_container{
+    width: 10%;
+    float: left;
+    margin-right: 1%;
+} 
+.right_container{
+    width: 80%;
+    float: left;
+}
+.left_half, .right_half{
+    width: 50%;
+    float: left;
+}
+.detail a{
+    padding: 10px 20px;
+    text-decoration: none;
+    background-color: #00bcd4;
+    float: right;
+    border-radius: 5px;
+    margin-bottom: 8px;
+}
+.detail hr{
+    width: 100%;
+}
+img{
+    border-radius: 10px;
+}
+
+
+@media screen and (max-width: 600px) {
+}
+@media screen and (max-width: 800px) {
+    
+    body{
+        background: #00bcd4;
+    }
+}
