@@ -1,0 +1,143 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-image: url("../img/bckgrnd.jpeg") ;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.box{
+    float: left;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 90%; 
+    box-sizing: border-box;
+    background: rgba(68, 67, 67, 0.7);
+    box-shadow: 0 15px 15px rgba(0, 0, 0,.4);
+    border-radius: 15px
+}
+.box-left{
+    width: 40%;
+    float: left;
+    padding: 20px 5% ;
+    border-radius: 15px 0px 0px 15px;
+    color: #fff;
+    text-align: center;
+    line-height: 1.5;
+}
+.box-right{
+    padding: 20px 5% ;
+    background: rgba(0, 0, 0,.4);
+    border-radius: 0px 15px 15px 0px;
+    width: 40%;
+    float: right;
+}
+.box-left h2,.box-left h1{
+    color: #00bcd4;
+}
+.box-right h2{
+    margin-bottom: 20px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+}
+.box p{
+    margin-bottom: 10px;
+    font-size: 13px;
+    padding: 0;
+    color: #fff;
+    text-align: left;
+}
+.box .inputbox{
+    position: relative;
+}
+.box .inputbox input{
+    width: 100%;
+    color: white;
+    padding: 10px 0;
+    font-size: 16px;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid olive;
+    background: transparent;
+
+}
+.box .btn{
+    width: 50%;
+    color: white;
+    padding: 10px 0;
+    font-size: 16px;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+    border: none;
+    border: 1px solid olive;
+    background: transparent;
+
+}
+.box .inputbox label{
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: white;
+    padding: 10px 0;
+    font-size: 16px;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.box .inputbox input:focus + label,
+.box .inputbox input:valid + label{
+    top: -18px;
+    left: 0;
+    color: #00bcd4;
+    font-size: 12px;
+}
+.box input[type="submit"]{
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    background-color: #00bcd4;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px; 
+}
+.forgot{
+    float: right;
+    color: white;
+}
+.submt{
+    margin-bottom: 10px;
+}
+.links{
+    color: white;
+    text-align: center;
+}.links a{
+    color: #00bcd4;
+}
+
+@media screen and (max-width: 800px) {
+    .box{
+        top: 50%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+
+    input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+    .box{
+        margin: 3% 0;
+        width: 70%;
+    }
+    .forgot{
+        font-size: 12px;
+        text-align: center;
+    }
+}
