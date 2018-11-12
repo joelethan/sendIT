@@ -17,12 +17,12 @@ def index():
 def get_parcels():
     return jsonify({ 'Parcels': parcel.get_all_parcels() }), 200
 
+
 @app.route('/api/v1/parcels', methods=['POST'])
 def add_parcels():
     data = request.get_json()
     
-    # validate.missing_field('weight', list(data.keys()))
-
+    
     if 'weight' not in list(data.keys()):
         return jsonify({
             "message":'Weight missing in data',
@@ -75,6 +75,7 @@ def get_parcel(parcel_id):
 @app.errorhandler(405)
 def no_method(error):
     return jsonify({'message':'Requested method not allowed, try a different method'}), 405
+
 
 @app.errorhandler(404)
 def page_not_found(error):
