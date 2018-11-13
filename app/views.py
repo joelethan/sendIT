@@ -1,11 +1,9 @@
 from flask import Flask, jsonify, request, json
 from app.model import ParcelList, Parcel
-from app.valid import Validate
 
 
 app = Flask(__name__)
 parcel = ParcelList()
-validate = Validate()
 
 
 @app.route('/')
@@ -22,54 +20,79 @@ def get_parcels():
 def add_parcels():
     data = request.get_json()
     
+
+    if not type(data) == dict:
+        return jsonify({
+            "message":'Data must be in dictionary format',
+            "required format":{"userid": "int", "weight": "float",
+                "status":"string","destination":"string","pickup":"string"}
+            }), 400
+
+    if 'userId' not in list(data.keys()):
+        return jsonify({
+            "message":'User Id missing in data',
+            "required format":{"userid": "int", "weight": "float",
+                "status":"string","destination":"string","pickup":"string"}
+            }), 400
+
     
     if 'weight' not in list(data.keys()):
         return jsonify({
             "message":'Weight missing in data',
-            "required format":{"weight": "int","status":"string","destination":"string","pickup":"string"}
+            "required format":{"userid": "int", "weight": "float",
+                "status":"string","destination":"string","pickup":"string"}
             }), 400
             
     if 'status' not in list(data.keys()):
         return jsonify({
             "message":'Status missing in data',
-            "required format":{"weight": "float","status":"string","destination":"string","pickup":"string"}
+            "required format":{"userid": "int", "weight": "float",
+                "status":"string","destination":"string","pickup":"string"}
             }), 400
-            
+
     if 'destination' not in list(data.keys()):
         return jsonify({
             "message":'Destination missing in data',
-            "required format":{"weight": "float","status":"string","destination":"string","pickup":"string"}
+            "required format":{"userid": "int", "weight": "float",
+                "status":"string","destination":"string","pickup":"string"}
             }), 400
-            
+
     if 'pickup' not in list(data.keys()):
         return jsonify({
             "message":'Pickup missing in data',
-            "required format":{"weight": "float","status":"string","destination":"string","pickup":"string"}
+            "required format":{"userid": "int", "weight": "float",
+                "status":"string","destination":"string","pickup":"string"}
             }), 400
 
     parcel_id = 1+parcel.get_highest_parcel_id()
-    new_parcel = parcel.add_parcel(parcel_id,  data['weight'], data['status'], data['destination'], data['pickup'])
-
-    if isinstance(new_parcel, str):
-        return jsonify({"message":new_parcel}), 400
+    new_parcel = parcel.add_parcel(parcel_id, data['userId'], data['weight'], data['pickup'], data['destination'], data['status'],)
 
     return jsonify({"Added Parcel":new_parcel}), 201
 
 
-@app.route('/api/v1/parcels/<int:parcel_id>', methods=['DELETE','GET','PUT'])
+@app.route('/api/v1/parcels/<int:parcel_id>')
 def get_parcel(parcel_id):
-    if request.method == 'GET':
-        # Get a Parcel
-        if parcel.get_parcel(parcel_id):
-            return jsonify({"Search":parcel.get_parcel(parcel_id)}), 200
-        return jsonify({"message":"Parcel Not Found"}), 400
+    # Get a Parcel
+    if parcel.get_parcel(parcel_id):
+        return jsonify({"Search":parcel.get_parcel(parcel_id)}), 200
+    return jsonify({"message":"Parcel Not Found"}), 400
 
-    else:
-        # Update status
-        data = request.get_json()
-        if parcel.get_parcel(parcel_id):
-            return jsonify({"Search":parcel.update_status(parcel_id, data['status'])}), 200
-        return jsonify({"message":"Parcel Not Found"}), 400
+
+@app.route('/api/v1/users/<int:userId>/parcels')
+def get_by_user(userId):
+    # Get Parcels by user
+    if parcel.get_parcel_user(userId):
+        return jsonify({"Search":parcel.get_parcel_user(userId)}), 200
+    return jsonify({"message":"User has no parcel delivery orders"}), 400
+
+
+@app.route('/api/v1/parcels/<int:parcel_id>', methods=['PUT'])
+def cancel_order(parcel_id):
+    # Update status
+    data = request.get_json()
+    if parcel.get_parcel(parcel_id):
+        return jsonify({"Search":parcel.update_status(parcel_id, data['status'])}), 200
+    return jsonify({"message":"Parcel Not Found"}), 400
 
 
 @app.errorhandler(405)
