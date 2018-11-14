@@ -13,13 +13,18 @@ def index():
 
 @app.route('/api/v1/parcels')
 def get_parcels():
+    
+    """ Get all parcel delivery orders """
+
     return jsonify({ 'Parcels': parcel.get_all_parcels() }), 200
 
 
 @app.route('/api/v1/parcels', methods=['POST'])
 def add_parcels():
+
+    """ Create a parcel delivery order """
+
     data = request.get_json()
-    
 
     if not type(data) == dict:
         return jsonify({
@@ -72,7 +77,9 @@ def add_parcels():
 
 @app.route('/api/v1/parcels/<int:parcel_id>')
 def get_parcel(parcel_id):
-    # Get a Parcel
+
+    """ Get a Parcel """
+
     if parcel.get_parcel(parcel_id):
         return jsonify({"Search":parcel.get_parcel(parcel_id)}), 200
     return jsonify({"message":"Parcel Not Found"}), 400
@@ -80,7 +87,9 @@ def get_parcel(parcel_id):
 
 @app.route('/api/v1/users/<int:userId>/parcels')
 def get_by_user(userId):
-    # Get Parcels by user
+
+    """ Get Parcels by user """
+
     if parcel.get_parcel_user(userId):
         return jsonify({"Search":parcel.get_parcel_user(userId)}), 200
     return jsonify({"message":"User has no parcel delivery orders"}), 400
@@ -88,7 +97,9 @@ def get_by_user(userId):
 
 @app.route('/api/v1/parcels/<int:parcel_id>/cancel', methods=['PUT'])
 def cancel_order(parcel_id):
-    # Cancel parcel order
+
+    """ Cancel parcel order """
+
     if parcel.get_parcel(parcel_id):
         parcel.update_status(parcel_id)
         return jsonify({"Search":"Parcel delivery order has been cancelled"}), 200
