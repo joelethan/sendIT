@@ -80,14 +80,14 @@ class APITestCase(unittest.TestCase):
         self.assertEqual(resp_get.status_code, 200)
 
 
-    def test_change_status(self):
+    def test_cancel_order(self):
         self.assertFalse(self.parcel.get_all_parcels())
         resp_post = self.client.post('/api/v1/parcels', data=json.dumps(self.new_parcel), content_type='application/json')
         self.assertIn('pending', str(resp_post.data))
-        resp_chang = self.client.put('/api/v1/parcels/1', data=json.dumps(self.status), content_type='application/json')
+        resp_chang = self.client.put('/api/v1/parcels/1/cancel', data=json.dumps(self.status), content_type='application/json')
         self.assertNotIn('pending', str(resp_chang.data))
         self.assertEqual(resp_chang.status_code, 200)
-        resp_chang = self.client.put('/api/v1/parcels/4', data=json.dumps(self.status), content_type='application/json')
+        resp_chang = self.client.put('/api/v1/parcels/4/cancel', data=json.dumps(self.status), content_type='application/json')
         self.assertEqual(resp_chang.status_code, 400)
     
 
