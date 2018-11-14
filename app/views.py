@@ -86,12 +86,12 @@ def get_by_user(userId):
     return jsonify({"message":"User has no parcel delivery orders"}), 400
 
 
-@app.route('/api/v1/parcels/<int:parcel_id>', methods=['PUT'])
+@app.route('/api/v1/parcels/<int:parcel_id>/cancel', methods=['PUT'])
 def cancel_order(parcel_id):
-    # Update status
-    data = request.get_json()
+    # Cancel parcel order
     if parcel.get_parcel(parcel_id):
-        return jsonify({"Search":parcel.update_status(parcel_id, data['status'])}), 200
+        parcel.update_status(parcel_id)
+        return jsonify({"Search":"Parcel delivery order has been cancelled"}), 200
     return jsonify({"message":"Parcel Not Found"}), 400
 
 

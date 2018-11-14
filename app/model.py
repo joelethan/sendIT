@@ -50,10 +50,10 @@ class ParcelList():
         self.parcel_list.append(parcel)
         return parcel
 
-    def update_status(self, parcel_id, status):
+    def update_status(self, parcel_id):
         for parcel in self.parcel_list:
             if parcel['parcel_id']==parcel_id: 
-                parcel['status']=status
+                parcel['status']='Cancelled'
                 return parcel
 
     def get_all_parcels(self):
