@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>sendIT</title>
+        <meta charset="utf-8">
+        <meta name="keywords" lang="en-us" content="Events, plot, night life">
+        <meta name="viewports" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="HandheldFriendly" content="true">
+        <link rel="stylesheet" href="static/style/style_order.css">
+    </head>
+    <body>
+        <div class="topnav">
+            <div class="links">
+                <a class="active" href="parcel_order.html">Home</a>
+                <a href="parcel_details.html">Details</a>
+                <a href="admin.html">Admin</a>
+                <div class="btn-logout">
+                    <a href="index.html">Logout</a>
+                </div>
+            </div>
+        </div>
+        <div class="heada">
+            <h2>SendIT</h2>
+            <p>SendIT is a courier service that helps users deliver parcels to different destinations. SendIT provides courier quotes based on weight categories.</p>
+        </div>
+
+        
+        <div class="box">
+            <div class="box-container">
+            <h2>Order Details </h2>
+            <form action="javascript:myFunc();">
+                    <div class="inputbox">
+                        <input type="text" name="" required>
+                        <label >Pickup Place:</label>
+                    </div>
+                    <div class="inputbox">
+                        <input type="text" name="" required>
+                        <label >Deliver To:</label>
+                    </div>
+                    <div class="inputbox">
+                        <input type="text" name="" required>
+                        <label >Weight (in Kg):</label>
+                    </div>
+                    <div class="submt">
+                        <input type="submit" name="" value="Place Order">
+                    </div>
+
+            </form>
+            </div>
+        </div>
+        <div class="footer">Powered by: <a href="joel.html"> Joel Katusiime</a></div>
+        <script>
+            function myFunc(){
+                alert('Order succesfully place!!')
+                window.location.reload()
+            }
+        </script>
+    </body>
+</html>
