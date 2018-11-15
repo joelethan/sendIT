@@ -1,4 +1,4 @@
-# SendIT
+# SendIT [![Build Status](https://travis-ci.org/joelethan/sendIT.svg?branch=develop)](https://travis-ci.org/joelethan/sendIT)
 SendIT is a courier service that helps users deliver parcels to different destinations. SendIT provides courier quotes based on weight categories.
 
 ## Getting Started
