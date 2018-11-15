@@ -1,3 +1,10 @@
+class User():
+    def __init__(self, userId, username, password, email):
+        self.userId = userId
+        self.username = username
+        self.email = email
+        self.password = password
+
 class Parcel():
     def __init__(self, parcel_id, userId, weight, pickup, destination, status):
         self.parcel_id = parcel_id
