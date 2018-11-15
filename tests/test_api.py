@@ -1,8 +1,8 @@
 import json
 import unittest
-from app.model import ParcelList
+from app.controllers.helper import ParcelList
 
-from app.views import app, parcel
+from app.views.api_views import app, parcel
 
 
 
