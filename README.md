@@ -59,7 +59,7 @@ python run.py
  * Restarting with stat
  * Debugger is active!
  * Debugger PIN: 294-773-545
- * Running on http://127.0.0.1:5003/ (Press CTRL+C to quit)
+ * Running on http://127.0.0.1:5003/ (Press CTRL+C to quit) 
 ```
 
 ## Project link
