@@ -1,5 +1,5 @@
-from app.views.api_views import app 
+from app.views.app_views import app,db
 
-
-if __name__ == "__main__":
+if __name__=='__main__':
+    db.create_tables()
     app.run(debug=True, port=5003) 

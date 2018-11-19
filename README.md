@@ -59,20 +59,11 @@ python run.py
  * Restarting with stat
  * Debugger is active!
  * Debugger PIN: 294-773-545
- * Running on http://127.0.0.1:5003/ (Press CTRL+C to quit) 
+ * Running on http://127.0.0.1:5003/ (Press CTRL+C to quit)
 ```
-### Endpoints
-
-HTTP Method|Endpoint|Functionality
------------|--------|-------------
-GET|/api/v1/parcels|Fetch all parcel delivery orders
-POST|/api/v1/parcels|Create a parcel delivery order
-GET|/api/v1/parcels/`parcel_id`|Fetch a specific parcel delivery order
-GET|/users/`userId`/parcels|Fetch all parcel delivery orders by a specific user
-PUT|/parcels/`parcelId`/cancel|Cancel the specific parcel delivery order
 
 ## Project link
-Heroku: https://joelbootcamp14.herokuapp.com/api/v1
+Heroku: 
 
 ## Author
 

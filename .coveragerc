@@ -1,7 +1,3 @@
 [report]
 omit =
     */__init__.py
-    */model.py
-    */user.py
-    */parcel.py
-    */helper.py
