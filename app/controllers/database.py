@@ -20,7 +20,7 @@ class DatabaseConnection:
 			print('Failed to connect to db')
 
 
-	def create_tables(self):
+	def create_tables(self): 
 
 		""" Create all database tables"""
 
