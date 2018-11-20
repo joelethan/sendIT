@@ -9,6 +9,7 @@ from flask_jwt_extended import JWTManager, jwt_required, create_access_token,get
 db = DatabaseConnection()
 
 app = Flask(__name__)
+db.create_tables()
 app.config['JWT_SECRET_KEY'] = 'thisissecret'
 jwt = JWTManager(app)
 
