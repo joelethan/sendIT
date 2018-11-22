@@ -78,7 +78,7 @@ class APITestCase(TestCase):
         response = self.client.post('/auth/signup', data=json.dumps(self.user_signUp),
                             content_type='application/json')
         self.assertEqual(response.status_code, 400)
-        self.assertIn('Username field must be present', json.loads(response.data)['message'])
+        self.assertIn('username field must be present', json.loads(response.data)['message'])
 
 
     def test_signup_username_type(self):
@@ -110,7 +110,7 @@ class APITestCase(TestCase):
         response = self.client.post('/auth/signup', data=json.dumps(self.user_signUp),
                             content_type='application/json')
         self.assertEqual(response.status_code, 400)
-        self.assertIn('Email field must be present', json.loads(response.data)['message'])
+        self.assertIn('email field must be present', json.loads(response.data)['message'])
 
 
     def test_signup_empty_email(self):
@@ -142,7 +142,7 @@ class APITestCase(TestCase):
         response = self.client.post('/auth/signup', data=json.dumps(self.user_signUp),
                             content_type='application/json')
         self.assertEqual(response.status_code, 400)
-        self.assertIn('Password field must be present', json.loads(response.data)['message'])
+        self.assertIn('password field must be present', json.loads(response.data)['message'])
 
 
     def test_signup_password_type(self):
@@ -176,7 +176,7 @@ class APITestCase(TestCase):
         login_resp = self.client.post('/auth/login', data=json.dumps(self.user_login), 
                             content_type='application/json')
         self.assertEqual(login_resp.status_code, 400)
-        self.assertIn('Username field must be present', json.loads(login_resp.data)['message'])
+        self.assertIn('username field must be present', json.loads(login_resp.data)['message'])
 
 
     def test_signin_username_type(self):
@@ -196,7 +196,7 @@ class APITestCase(TestCase):
         login_resp = self.client.post('/auth/login', data=json.dumps(self.user_login), 
                             content_type='application/json')
         self.assertEqual(login_resp.status_code, 400)
-        self.assertIn('Password field must be present', json.loads(login_resp.data)['message']) 
+        self.assertIn('password field must be present', json.loads(login_resp.data)['message']) 
 
 
     def test_signin_password_type(self):
@@ -245,7 +245,7 @@ class APITestCase(TestCase):
             data=json.dumps(self.parcel)
             )
         self.assertEqual(response1.status_code, 400) 
-        self.assertIn('Weight field must be present', json.loads(response1.data)['message']) 
+        self.assertIn('weight field must be present', json.loads(response1.data)['message']) 
         
         
     def test_parcels_weight_type(self):
@@ -283,7 +283,7 @@ class APITestCase(TestCase):
             data=json.dumps(self.parcel)
             )
         self.assertEqual(response1.status_code, 400) 
-        self.assertIn('Pickup location field must be present', json.loads(response1.data)['message'])
+        self.assertIn('pickup_location field must be present', json.loads(response1.data)['message'])
         
         
     def test_parcels_pickup_type(self):
@@ -321,7 +321,7 @@ class APITestCase(TestCase):
             data=json.dumps(self.parcel)
             )
         self.assertEqual(response1.status_code, 400) 
-        self.assertIn('Present location field must be present', json.loads(response1.data)['message'])
+        self.assertIn('present_location field must be present', json.loads(response1.data)['message'])
         
         
     def test_parcels_location_type(self):
@@ -359,7 +359,7 @@ class APITestCase(TestCase):
             data=json.dumps(self.parcel)
             )
         self.assertEqual(response1.status_code, 400) 
-        self.assertIn('Destination field must be present', json.loads(response1.data)['message'])
+        self.assertIn('destination field must be present', json.loads(response1.data)['message'])
         
         
     def test_parcels_destination_type(self):

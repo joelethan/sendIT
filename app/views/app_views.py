@@ -8,6 +8,7 @@ from flask_jwt_extended import JWTManager, jwt_required, create_access_token,get
 
 db = DatabaseConnection()
 
+
 app = Flask(__name__)
 app.config['JWT_SECRET_KEY'] = 'thisissecret'
 jwt = JWTManager(app)
@@ -24,15 +25,17 @@ def index():
 def add_user():
 
     data = request.get_json()
+    validate = db.validate_data('username', list(data.keys()))
+    if validate:
+        return validate
 
-    if 'username' not in list(data.keys()):
-        return jsonify({'message':'Username field must be present'}), 400
+    validate = db.validate_data('email', list(data.keys()))
+    if validate:
+        return validate
 
-    if 'email' not in list(data.keys()):
-        return jsonify({'message':'Email field must be present'}), 400
-
-    if 'password' not in list(data.keys()):
-        return jsonify({'message':'Password field must be present'}), 400
+    validate = db.validate_data('password', list(data.keys()))
+    if validate:
+        return validate
 
     username = data['username']
     email = data['email']
@@ -87,11 +90,13 @@ def login():
 
     data = request.get_json()
 
-    if 'username' not in list(data.keys()):
-        return jsonify({'message':'Username field must be present'}), 400
+    validate = db.validate_data('username', list(data.keys()))
+    if validate:
+        return validate
 
-    if 'password' not in list(data.keys()):
-        return jsonify({'message':'Password field must be present'}), 400
+    validate = db.validate_data('password', list(data.keys()))
+    if validate:
+        return validate
 
     req_username = data['username']
     req_password = data['password']
@@ -130,17 +135,21 @@ def add_order():
 
     data = request.get_json()
 
-    if 'weight' not in list(data.keys()):
-        return jsonify({'message':'Weight field must be present'}), 400
+    validate = db.validate_data('weight', list(data.keys()))
+    if validate:
+        return validate
 
-    if 'pickup_location' not in list(data.keys()):
-        return jsonify({'message':'Pickup location field must be present'}), 400
+    validate = db.validate_data('pickup_location', list(data.keys()))
+    if validate:
+        return validate
 
-    if 'present_location' not in list(data.keys()):
-        return jsonify({'message':'Present location field must be present'}), 400
+    validate = db.validate_data('present_location', list(data.keys()))
+    if validate:
+        return validate
 
-    if 'destination' not in list(data.keys()):
-        return jsonify({'message':'Destination field must be present'}), 400
+    validate = db.validate_data('destination', list(data.keys()))
+    if validate:
+        return validate
 
 
     weight = data['weight']
@@ -201,8 +210,9 @@ def update_destination(id):
 
     data = request.get_json()
 
-    if 'destination' not in list(data.keys()):
-        return jsonify({'message':'Destination field must be present'}), 400
+    validate = db.validate_data('destination', list(data.keys()))
+    if validate:
+        return validate
 
     destination = data['destination']
 
@@ -225,8 +235,9 @@ def update_status(id):
 
     data = request.get_json()
 
-    if 'status' not in list(data.keys()):
-        return jsonify({'message':'Status field must be present'}), 400
+    validate = db.validate_data('status', list(data.keys()))
+    if validate:
+        return validate
 
     status = data['status']
 
@@ -251,8 +262,9 @@ def update_presentLocation(id):
 
     data = request.get_json()
 
-    if 'present_location' not in list(data.keys()):
-        return jsonify({'message':'Present location field must be present'}), 400
+    validate = db.validate_data('present_location', list(data.keys()))
+    if validate:
+        return validate
 
     location = data['present_location']
 

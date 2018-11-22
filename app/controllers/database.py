@@ -1,3 +1,4 @@
+from flask import jsonify
 import psycopg2
 import os
 
@@ -119,3 +120,7 @@ class DatabaseConnection:
 		self.cursor.execute(query)
 		user = self.cursor.fetchone()
 		return user
+
+	def validate_data(self, value, lst):
+		if value not in lst:
+			return jsonify({'message':'{} field must be present'.format(value)}), 400
