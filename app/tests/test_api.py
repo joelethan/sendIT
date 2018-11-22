@@ -24,7 +24,7 @@ class APITestCase(TestCase):
 
 
     def test_index(self):
-        response = self.client.get('/api/v1/')
+        response = self.client.get('/api/v1')
         self.assertEqual(response.status_code, 200)
 
     def test_signup(self):
@@ -69,8 +69,8 @@ class APITestCase(TestCase):
             content_type='application/json',
             data=json.dumps(self.parcel)
             )
-        self.assertIn('You don\'t have access to this function!', json.loads(response1.data)['message'])
-        self.assertEqual(response1.status_code, 403)
+        self.assertIn('Order recieved', json.loads(response1.data)['message'])
+        self.assertEqual(response1.status_code, 201)
 
 
     def test_signup_no_username(self):
