@@ -12,7 +12,7 @@ class DatabaseConnection:
 								user="postgres",
 								host="localhost",
 								password="postgres",
-								port="5434")
+								port="5432")
 			self.connection.autocommit = True
 			self.cursor = self.connection.cursor()
 
