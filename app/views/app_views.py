@@ -42,51 +42,43 @@ def login():
 @app.route('/api/v1/parcels', methods=['POST'])
 @jwt_required
 def add_order():
-
-    current_user = get_jwt_identity()
     data = request.get_json()
-    return order.add_order(current_user, data)
+    return order.add_order( data)
 
 
 @app.route('/api/v1/parcels', methods=['GET'])
 @jwt_required
 def get_orders():
 
-    current_user = get_jwt_identity()
-    return order.get_orders(current_user)
+    return order.get_orders()
 
 
 @app.route('/api/v1/parcels/<int:id>', methods=['GET'])
 @jwt_required
 def get_an_order(id):
-
-    current_user = get_jwt_identity()
-    return order.get_order(id, current_user)
+    return order.get_order(id)
 
 
 @app.route('/api/v1/parcels/<int:id>/destination', methods=['PUT'])
 @jwt_required
 def update_destination(id):
-
-    current_user = get_jwt_identity()
+    
     data = request.get_json()
-    return order.update_dest(id, current_user, data)
+    return order.update_dest(id, data)
 
 @app.route('/api/v1/parcels/<int:id>/status', methods=['PUT'])
 @jwt_required
 def update_status(id):
-
-    current_user = get_jwt_identity()
+    
     data = request.get_json()
-    return order.update_status(id, current_user, data)
+    return order.update_status(id, data)
 
 @app.route('/api/v1/parcels/<int:parcel_id>/presentLocation', methods=['PUT'])
 @jwt_required
 def update_presentLocation(parcel_id):
-
-    current_user = get_jwt_identity()
+    
     data = request.get_json()
-    return order.update_present(parcel_id, current_user, data)
+    return order.update_present(parcel_id, data)
 
 @app.errorhandler(405)
 def url_not_found(error):
