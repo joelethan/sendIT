@@ -19,7 +19,7 @@ jwt = JWTManager(app)
 Swagger(app)
 
 
-@app.route('/api/v1/')
+@app.route('/api/v1')
 def index():
     
     return "<h2 style='text-align: center'>Welcome 2 Week 2</h2>"
@@ -80,13 +80,13 @@ def update_status(id):
     data = request.get_json()
     return order.update_status(id, current_user, data)
 
-@app.route('/api/v1/parcels/<int:id>/presentLocation', methods=['PUT'])
+@app.route('/api/v1/parcels/<int:parcel_id>/presentLocation', methods=['PUT'])
 @jwt_required
-def update_presentLocation(id):
+def update_presentLocation(parcel_id):
 
     current_user = get_jwt_identity()
     data = request.get_json()
-    return order.update_present(id, current_user, data)
+    return order.update_present(parcel_id, current_user, data)
 
 @app.errorhandler(405)
 def url_not_found(error):

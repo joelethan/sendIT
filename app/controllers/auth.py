@@ -57,7 +57,7 @@ class Auth:
             return jsonify({'message':'Invalid email format'}), 400
 
         if db.get_user('username', username):
-            return jsonify({'message':'Username already taken'}), 400
+            return jsonify({'message':'User already exists'}), 400
 
         if db.get_user('email', email):
             return jsonify({'message':'Your email address is already registered'}), 400
@@ -99,7 +99,7 @@ class Auth:
 
         if user.username == req_username and check_password_hash( user.password, req_password):
             access_token = create_access_token(dict(user=req_username,admin=db_user[4],id=db_user[0]))
-            return jsonify({'token': access_token, 'message':'{} has logged-in'.format(user.username)}), 200
+            return jsonify({'token': access_token, 'message':'Login successful'}), 200
 
 
         return jsonify({'message':'Could not verify User'}), 401

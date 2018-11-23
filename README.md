@@ -7,12 +7,21 @@ SendIT is a courier service that helps users deliver parcels to different destin
 
 ## Requirements
 
-- Have Python 3 installed
+- Have Python 3.6.5 installed postgresql-9.5
+- Have Postgresql-9.5.14 installed
 - Have a virtual environment installed to separate the project's packages from the computer's packages
 - Have Postman installed to test the API endpoints
 
 ## Installation
 A step by step guide on how to setup and run the application. 
+
+### Setting-up a database
+```
+Install Postgresql
+Create a postgresql user called `postgres` with a password `postgres`
+Access the postgres server through `pgAdmin` and create a production database `sendit` and a test database `test_db`
+
+```
 
  Clone the repository by running the command in terminal or command line prompt
 ```
@@ -61,9 +70,23 @@ python run.py
  * Debugger PIN: 294-773-545
  * Running on http://127.0.0.1:5003/ (Press CTRL+C to quit)
 ```
+### Endpoints
+
+HTTP Method|Endpoint|Functionality
+-----------|--------|-------------
+GET|/api/v1|Fetch Index page
+POST|/auth/signup|Create a new User
+POST|/auth/login|Login a User
+POST|/api/v1/parcels|Create a Parcel delivery order
+GET|/api/v1/parcels|Fetch all Parcel delivery orders
+GET|/api/v1/parcels/`parcel_id`|Fetch a Parcel delivery order
+PUT|/api/v1/parcels/`parcel_id`/destination|Update the distination of an Order
+PUT|/api/v1/parcels/`parcel_id`/status|Update the status of an Order
+PUT|/api/v1/parcels/`parcel_id`/presentLocation|Update the presentLocation of an Order
+
 
 ## Project link
-Heroku: 
+Heroku: https://joelcamp14.herokuapp.com/api/v1/
 
 ## Author
 
