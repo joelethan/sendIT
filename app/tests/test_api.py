@@ -409,4 +409,4 @@ class APITestCase(TestCase):
             headers={'Authorization': 'Bearer ' + access_token['token']},
             content_type='application/json'
             )
-        self.assertEqual(response1.status_code, 200)
+        self.assertEqual(response1.status_code, 200) 

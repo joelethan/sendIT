@@ -9,7 +9,9 @@ db = DatabaseConnection()
 
 
 class Orderz:
-    def add_order(self, current_user, data):
+    def add_order(self, data):
+        
+        current_user = get_jwt_identity()
 
         """ Place a delivery order """
         validate = db.validate_data('weight', list(data.keys()))
@@ -50,7 +52,9 @@ class Orderz:
         order = Orderz.list_to_dict(order)
         return jsonify({'Order' :  order}), 201
 
-    def get_orders(self, current_user):
+    def get_orders(self):
+        
+        current_user = get_jwt_identity()
         if current_user['admin'] == True:
             orders = db.get_orders()
         else:
@@ -67,7 +71,9 @@ class Orderz:
 
         return jsonify({'Orders' : orders_dict}), 200
 
-    def get_order(self, id, current_user):
+    def get_order(self, id):
+        
+        current_user = get_jwt_identity()
         order = db.get_an_order('parcel_id', id)
         if not order:
             return jsonify({'message' : 'Parcel not found!!'}), 400
@@ -78,7 +84,9 @@ class Orderz:
 
         return jsonify({'message' : 'You only view Orders you placed'}), 400 
 
-    def update_dest(self, parcel_id, current_user, data):
+    def update_dest(self, parcel_id, data):
+        
+        current_user = get_jwt_identity()
         order = db.get_an_order('parcel_id', parcel_id)
         if not order:
             return jsonify({'message' : 'Parcel not found!!'}), 400
@@ -102,7 +110,9 @@ class Orderz:
         db.update_destination(parcel_id, (destination).strip())
         return jsonify({'message' : 'Parcel destination Updated to \'{}\' '.format(destination)}), 200
 
-    def update_status(self, parcel_id, current_user, data):
+    def update_status(self, parcel_id, data):
+        
+        current_user = get_jwt_identity()
         order = db.get_an_order('parcel_id', parcel_id)
         if not order:
             return jsonify({'message' : 'Parcel not found!!'}), 400
@@ -129,7 +139,9 @@ class Orderz:
         db.update_status(parcel_id, (status).strip().title())
         return jsonify({'message' : 'Parcel status Updated to {}'.format(status.title())}), 200
 
-    def update_present(self, parcel_id, current_user, data):
+    def update_present(self, parcel_id, data):
+        
+        current_user = get_jwt_identity()
         order = db.get_an_order('parcel_id', parcel_id)
         if not order:
             return jsonify({'message' : 'Parcel not found!!'}), 400
@@ -165,4 +177,4 @@ class Orderz:
             "present_location": order[5],
             "status": order[6]
         }
-        return output
+        return output 
