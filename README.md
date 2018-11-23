@@ -1,4 +1,4 @@
-# SendIT [![Build Status](https://travis-ci.org/joelethan/sendIT.svg?branch=develop)](https://travis-ci.org/joelethan/sendIT) [![Maintainability](https://api.codeclimate.com/v1/badges/ceb2c8d5e078eb027d7d/maintainability)](https://codeclimate.com/github/joelethan/sendIT/maintainability) [![Coverage Status](https://coveralls.io/repos/github/joelethan/sendIT/badge.svg?branch=develop)](https://coveralls.io/github/joelethan/sendIT?branch=develop)
+# SendIT [![Build Status](https://travis-ci.org/joelethan/sendIT.svg?branch=Travis%2B_)](https://travis-ci.org/joelethan/sendIT) [![Maintainability](https://api.codeclimate.com/v1/badges/ceb2c8d5e078eb027d7d/maintainability)](https://codeclimate.com/github/joelethan/sendIT/maintainability) [![Coverage Status](https://coveralls.io/repos/github/joelethan/sendIT/badge.svg?branch=develop)](https://coveralls.io/github/joelethan/sendIT?branch=develop)
 SendIT is a courier service that helps users deliver parcels to different destinations. SendIT provides courier quotes based on weight categories.
 
 ## Getting Started
