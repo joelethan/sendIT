@@ -74,7 +74,7 @@ python run.py
 
 HTTP Method|Endpoint|Functionality
 -----------|--------|-------------
-GET|/api/v1/|Fetch Index page
+GET|/api/v1|Fetch Index page
 POST|/auth/signup|Create a new User
 POST|/auth/login|Login a User
 POST|/api/v1/parcels|Create a Parcel delivery order
