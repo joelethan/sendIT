@@ -12,7 +12,7 @@ class DatabaseConnection:
 								user="postgres",
 								host="localhost",
 								password="postgres",
-								port="5432")
+								port="5434")
 			self.connection.autocommit = True
 			self.cursor = self.connection.cursor()
 
@@ -129,6 +129,12 @@ class DatabaseConnection:
 
 	def get_item_from_parcels(self, item, value):
 		query = "SELECT {} FROM parcel_orders WHERE parcel_id = '{}'".format(item, value)
+		self.cursor.execute(query)
+		item = self.cursor.fetchone()
+		return item 
+
+	def get_created_parcel(self):
+		query = "SELECT * from parcel_orders ORDER BY parcel_id DESC LIMIT 1"
 		self.cursor.execute(query)
 		item = self.cursor.fetchone()
 		return item 

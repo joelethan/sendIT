@@ -35,8 +35,8 @@ class Orderz:
         destination = data['destination']
 
 
-        if not type(weight) == float:
-            return jsonify({'message':'Weight must be interger'}), 400
+        if type(weight) not in [float, int]:
+            return jsonify({'message':'Weight must be float'}), 400
         if not type(pickup_location) == str:
             return jsonify({'message':'Pickup location must be String'}), 400
         if not type(present_location) == str:
@@ -46,7 +46,9 @@ class Orderz:
 
 
         db.place_order(current_user['id'], weight, pickup_location, present_location, destination)
-        return jsonify({'message' : 'Order recieved'}), 201
+        order = db.get_created_parcel()
+        order = Orderz.list_to_dict(order)
+        return jsonify({'Order' :  order}), 201
 
     def get_orders(self, current_user):
         if current_user['admin'] == True:
@@ -58,7 +60,12 @@ class Orderz:
         if not orders:
             return jsonify({'Orders' : 'No orders found'}), 200
 
-        return jsonify({'Orders' : orders}), 200
+        orders_dict = []
+        for order in orders:
+            order = Orderz.list_to_dict(order)
+            orders_dict.append(order)
+
+        return jsonify({'Orders' : orders_dict}), 200
 
     def get_order(self, id, current_user):
         order = db.get_an_order('parcel_id', id)
@@ -66,6 +73,7 @@ class Orderz:
             return jsonify({'message' : 'Parcel not found!!'}), 400
 
         if current_user['admin'] == True or current_user['id'] == order[2]:
+            order = Orderz.list_to_dict(order)
             return jsonify({'Order' : order}), 200
 
         return jsonify({'message' : 'You only view Orders you placed'}), 400 
@@ -146,3 +154,15 @@ class Orderz:
 
         db.update_presentLocation(parcel_id, (location).strip())
         return jsonify({'message' : 'Parcel present location Updated to \'{}\' '.format(location)}), 200
+
+    def list_to_dict(order):
+        output={
+            "parcel_id": order[0],
+            "weight": order[1],
+            "user_id": order[2],
+            "pickup_location": order[3],
+            "destination": order[4],
+            "present_location": order[5],
+            "status": order[6]
+        }
+        return output
