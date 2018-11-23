@@ -69,7 +69,6 @@ class APITestCase(TestCase):
             content_type='application/json',
             data=json.dumps(self.parcel)
             )
-        self.assertIn('Order recieved', json.loads(response1.data)['message'])
         self.assertEqual(response1.status_code, 201)
 
 
@@ -249,7 +248,7 @@ class APITestCase(TestCase):
         
         
     def test_parcels_weight_type(self):
-        self.parcel['weight'] = 4
+        self.parcel['weight'] = '4'
         self.client.post('/auth/signup', data=json.dumps(self.user_signUp),
                             content_type='application/json')
         self.client.post('/auth/signup', data=json.dumps(self.user2_signUp),
@@ -264,7 +263,7 @@ class APITestCase(TestCase):
             data=json.dumps(self.parcel)
             )
         self.assertEqual(response1.status_code, 400) 
-        self.assertIn('Weight must be interger', json.loads(response1.data)['message']) 
+        self.assertIn('Weight must be float', json.loads(response1.data)['message']) 
         
         
     def test_parcels_no_pickup(self):
