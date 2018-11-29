@@ -4,8 +4,8 @@ from ..controllers.auth import Auth
 from ..controllers.order import Orderz 
 from ..models.app_models import User
 from werkzeug.security import generate_password_hash, check_password_hash
-from flasgger import Swagger, swag_from
 from flask_jwt_extended import JWTManager, jwt_required, create_access_token,get_jwt_identity
+from flask_cors import CORS, cross_origin
 
 
 db = DatabaseConnection()
@@ -13,10 +13,10 @@ auth = Auth()
 order = Orderz()
 
 app = Flask(__name__)
+CORS(app)
 app.config['JWT_SECRET_KEY'] = 'thisissecret'
 jwt = JWTManager(app)
 
-Swagger(app)
 
 
 @app.route('/api/v1')
@@ -25,7 +25,6 @@ def index():
     return "<h2 style='text-align: center'>Welcome 2 Week 2</h2>"
 
 @app.route('/auth/signup', methods=['POST'])
-@swag_from('../Docs/signup.yml')
 def add_user():
 
     data = request.get_json()
@@ -33,7 +32,6 @@ def add_user():
 
 
 @app.route('/auth/login', methods=['POST'])
-@swag_from('../Docs/signin.yml')
 def login():
 
     data = request.get_json()
