@@ -5,7 +5,7 @@ from ..controllers.order import Orderz
 from ..models.app_models import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_jwt_extended import JWTManager, jwt_required, create_access_token,get_jwt_identity
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 
 
 db = DatabaseConnection()
