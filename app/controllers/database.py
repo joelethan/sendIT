@@ -77,7 +77,7 @@ class DatabaseConnection:
 
 
 	def get_orders(self):
-		query = "SELECT * FROM parcel_orders;"
+		query = "SELECT * FROM parcel_orders ORDER BY parcel_id ASC;"
 		self.cursor.execute(query)
 		orders = self.cursor.fetchall()
 		return orders

@@ -22,9 +22,9 @@ function addUser(e) {
             if ((response.message).includes('successful')) {
                 window.location.href = 'order.html';
                 localStorage.setItem("access_token", response.token);
-                alert(response.token)
+                // alert(response.message)
             } else {
-                alert(response.message);
+                alert(response.message);             
             }
         })
 };

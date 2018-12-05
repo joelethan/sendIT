@@ -30,7 +30,7 @@ function addUser(e) {
         .then(response => {
             console.log((response.message))
             if ((response.message).includes('registered.')) {
-                window.location.href = 'order.html';
+                window.location.href = 'index.html';
                 console.log((response.message))
             } else {
                 alert(response.message);

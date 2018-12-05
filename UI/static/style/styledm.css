@@ -4,6 +4,7 @@ body{
     font-family: sans-serif;
     background: #3d9aa7;
     
+    background-image: url("../img/bckgrnd.jpeg") ;
     background-attachment:fixed;
     background-size: cover;
 }
@@ -73,7 +74,7 @@ tr:nth-child(even) {
     margin: 100px 10% 20px 10%;
     width: 80%;
     padding: 20px 40px ;
-    background: rgba(0, 0, 0,.5);
+    background: rgba(0, 0, 0,.7);
     box-sizing: border-box;
     box-shadow: 0 15px 15px rgba(0, 0, 0,.5);
     border-radius: 15px;
@@ -99,7 +100,7 @@ tr:nth-child(even) {
     margin: 50px 5%;
     width: 90%;
     padding: 20px 20px ;
-    background: rgba(0, 0, 0,.6);
+    background: rgba(0, 0, 0,.8);
     box-sizing: border-box;
     box-shadow: 0 15px 15px rgba(0, 0, 0,.5);
     border-radius: 10px;
