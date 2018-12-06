@@ -50,7 +50,7 @@ class Orderz:
         db.place_order(current_user['id'], weight, pickup_location, present_location, destination)
         order = db.get_created_parcel()
         order = Orderz.list_to_dict(order)
-        return jsonify({'Order' :  order}), 201
+        return jsonify({'message':'Order placed', 'Order' :  order}), 201
 
     def get_orders(self):
         
@@ -85,14 +85,14 @@ class Orderz:
         return jsonify({'message' : 'You only view Orders you placed'}), 400 
 
     def update_dest(self, parcel_id, data):
-        
+
         current_user = get_jwt_identity()
         order = db.get_an_order('parcel_id', parcel_id)
         if not order:
             return jsonify({'message' : 'Parcel not found!!'}), 400
 
         if current_user['id'] != db.get_user_id(parcel_id):
-            return jsonify({'message' : 'You only view Orders you placed'}), 400
+            return jsonify({'message' : 'You only edit Orders you placed'}), 400
 
         validate = db.validate_data('destination', list(data.keys()))
         if validate:
@@ -133,8 +133,8 @@ class Orderz:
             return jsonify({'message':'Status must be String'}), 400
         if not status.strip():
             return jsonify({'message':'Status cannot be empty'}), 400
-        if not status.title() in ['New','Transportation','Cancelled','Delivered']:
-            return jsonify({'message':"Status must be in the given list: ['New','Transportation','Cancelled','Delivered']"})
+        if not status.title() in ['New','Intransit','Cancelled','Delivered']:
+            return jsonify({'message':"Status must be in the given list: ['New','Intransit','Cancelled','Delivered']"})
 
         db.update_status(parcel_id, (status).strip().title())
         return jsonify({'message' : 'Parcel status Updated to {}'.format(status.title())}), 200

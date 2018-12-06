@@ -67,7 +67,7 @@ class Auth:
 
         db.add_user((username).strip(), (email).strip(), password)
         db.auto_admin()
-        return jsonify({'message':'User {} registered'.format(username)}), 201
+        return jsonify({'message':'User {} registered.'.format(username)}), 201
 
     def login(self, data):
         validate = db.validate_data('username', list(data.keys()))
