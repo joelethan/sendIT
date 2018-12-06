@@ -50,13 +50,6 @@ function addUser(e) {
             document.querySelector('tbody').innerHTML = output;
         })
     };
-
-function copy() {
-    console.log(document.getElementById("mySelect").value)
-
-}
-
-
 function updateDestination(e, id) {
     new_dest = e.target.value;
     id = id;
@@ -124,10 +117,6 @@ function updatePresentLocal(e, id) {
         })
     };
 
-function viewbtn(id) {
-    console.log(id);
-}
-
 function updateStatus(e, id) {
     new_status = e.target.value;
     id = id;
@@ -162,3 +151,49 @@ function updateStatus(e, id) {
         }
     })
 };
+
+function viewbtn(id) {
+    console.log(id);
+    order.style.display = "block";
+    // new_status = e.target.value;
+    // id = id;
+    // console.log(id);
+    // console.log(new_status);
+    // window.location.reload()
+
+    // let data = {
+    //     status: new_status
+    // }
+    // let order_id = id
+
+    let url = `http://127.0.0.1:5003/api/v1/parcels/${id}`;
+    fetch(url, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem("access_token")}`
+        }
+    })
+        .then(res => res.json())
+        .then(data => {
+            // alert(id)
+            alert(data.Order.destination)
+            // alert(data.message)
+            if (data.msg) {
+                window.location.href = 'index.html';
+            }
+        })
+};
+
+var order = document.getElementById('myOrder');
+
+var span = document.getElementById("close");
+
+span.onclick = function () {
+    order.style.display = "none";
+}
+
+window.onclick = function (event) {
+    if (event.target == order) {
+        order.style.display = "none";
+    }
+}
