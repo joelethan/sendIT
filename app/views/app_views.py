@@ -13,7 +13,6 @@ auth = Auth()
 order = Orderz()
 
 app = Flask(__name__)
-db.create_tables()
 CORS(app)
 app.config['JWT_SECRET_KEY'] = 'thisissecret'
 jwt = JWTManager(app)
