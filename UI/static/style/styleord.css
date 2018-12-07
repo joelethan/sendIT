@@ -5,6 +5,7 @@ body{
     background-image: url("../img/bckgrnd.jpeg") ;
     background-repeat: no-repeat;
     background-size: cover;
+    /* background: #3d9aa7; */
 }
 .box{
     float: left;
@@ -14,11 +15,11 @@ body{
     width: 90%; 
     box-sizing: border-box;
     border-radius: 15px;
-    margin-top: 15%
+    margin-top: 12%
 }
 .box-container{
     padding: 20px 5%;
-    background: rgba(0, 0, 0,.7);
+    background: rgba(0, 0, 0,.8);
     box-shadow: 0 15px 15px rgba(0, 0, 0,.5);
     border-radius: 15px 15px 15px 15px;
     width: 90%;
@@ -76,7 +77,7 @@ body{
 }
 .topnav {
     padding: 30px 0;
-    background: rgba(0, 0, 0,.7);
+    background: rgba(0, 0, 0,.5);
 	width: 100%;
     color: #fff;
     position: fixed;
@@ -102,16 +103,16 @@ body{
 .heada{
     margin: 100px 10% 20px 10%;
     width: 80%;
-    padding: 5px 40px ;
+    padding: 20px 40px ;
     background: rgba(0, 0, 0,.7);
-    box-shadow: 0 15px 15px rgba(0, 0, 0,.3);
+    /* box-shadow: 0 15px 15px rgba(0, 0, 0,.5); */
     box-sizing: border-box;
     border-radius: 15px;
     text-align: center;
     color: #fff;
 }
 .heada h2{
-    font-size: 30px;
+    font-size: 40px;
     color: #00bcd4;
 }.heada h3{
     margin-top: -30px;

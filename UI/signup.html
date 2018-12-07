@@ -1,54 +1,59 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>sendIT</title>
-        <link rel="stylesheet" href="static/style/style.css">
-    </head>
-    <body>
-        <div class="box">
-            <div class="box-left">
-                <h1>SendIT</h1>
-                <h4>Register to enjoy the best delivery services in town!!</h4>
-                <h4>Order today and have 30% off your first 2 orders</h4>
-                <h4>Have your order delivered at the destination in the shortest time possible.</h4>
-            </div>
-            <div class="box-right">
-                    <h2>Creacte an acount</h2>
-                    <form action="parcel_order.html">
-                            <div class="inputbox">
-                                <input type="text" name="" required>
-                                <label >First Name</label>
-                            </div>
-                            <div class="inputbox">
-                                <input type="text" name="" required>
-                                <label >Last Name</label>
-                            </div>
-                            <div class="inputbox">
-                                <input type="text" name="" required>
-                                <label >Username</label>
-                            </div>
-                            <div class="inputbox">
-                                <input type="email" name="" required>
-                                <label >Email</label>
-                            </div>
-                            <div class="inputbox">
-                                <input type="text" name="" required>
-                                <label >Password</label>
-                            </div>
-                            <div class="inputbox">
-                                <input type="password" name="" required>
-                                <label >Confirm Password</label>
-                            </div>
-                            <div class="submt">
-                                <input type="submit" name="" value="Submit">
-                            </div class="links">
-                                <p class="links">Already have an account? <a href="index.html">Login</a></p>
-                            </div>
-        
-                    </form>
 
-            </div>
+<head>
+    <meta charset="utf-8">
+    <title>sendIT</title>
+    <link rel="stylesheet" href="static/style/style.css">
+</head>
+
+<body>
+    <div class="box">
+        <div class="box-left">
+            <h1>SendIT</h1>
+            <h4>Register to enjoy the best delivery services in town!!</h4>
+            <h4>Order today and have 30% off your first 2 orders</h4>
+            <h4>Have your order delivered at the destination in the shortest time possible.</h4>
         </div>
-    </body>
+        <div class="box-right">
+            <h2>Creacte an acount</h2>
+            <form method="POST" id="yipy">
+                <div class="inputbox">
+                    <input type="text" id="fname" required>
+                    <label>First Name</label>
+                </div>
+                <div class="inputbox">
+                    <input type="text" id="lname" required>
+                    <label>Last Name</label>
+                </div>
+                <div class="inputbox">
+                    <input type="text" id="username" required>
+                    <label>Username</label>
+                </div>
+                <div class="inputbox">
+                    <input type="email" id="email" required>
+                    <label>Email</label>
+                </div>
+                <div class="inputbox">
+                    <input type="password" id="password1" required>
+                    <label>Password</label>
+                </div>
+                <div class="inputbox">
+                    <input type="password" id="password2" required>
+                    <label>Confirm Password</label>
+                </div>
+                <div class="submt">
+                    <input type="submit" required>
+                    <!-- <button>Submit</button> -->
+                </div class="links">
+                <p class="links">Already have an account? <a href="index.html">Login</a></p>
+        </div>
+
+        </form>
+
+    </div>
+    </div>
+    <script src="static/js/signup.js"></script>
+</body>
+
 </html>
