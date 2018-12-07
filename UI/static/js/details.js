@@ -1,7 +1,7 @@
-window.addEventListener('load', addUser);
+window.addEventListener('load', getParcel);
 const url = 'https://joelweek2.herokuapp.com/api/v1/parcels';
 
-function addUser(e) {
+function getParcel(e) {
     e.preventDefault();
 
 
@@ -52,7 +52,7 @@ function addUser(e) {
     };
 function updateDestination(e, id) {
     new_dest = e.target.value;
-    id = id;
+    // id = id;
     console.log(new_dest);
 
 

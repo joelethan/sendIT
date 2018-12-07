@@ -2,9 +2,10 @@ body{
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    background: #3d9aa7;
     
     background-image: url("../img/bckgrnd.jpeg") ;
+    background: #3d9aa7;
+    background: #eeeeee;
     background-attachment:fixed;
     background-size: cover;
 }
@@ -31,10 +32,11 @@ td, th {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
+    color: #666;
 }
 td input{
     background-color: transparent;
-    color: white;
+    color: #666;
     border-bottom: 1px solid black;
     border: none;
     outline: none;
@@ -42,7 +44,7 @@ td input{
 }
 td input:hover, td input:focus{
     background-color: wheat;
-    color: black;
+    color: #666;
     border-radius: 4px;
 }
 
@@ -50,11 +52,17 @@ tr:nth-child(even) {
     background-color: #3d9aa7;
 }
 
+tr:nth-child(odd) {
+    /* background-color: black; */
+    color: #666
+}
+
 
 
 .topnav {
     padding: 30px 0;
     background: rgba(0, 0, 0,.7);
+    /* background: white; */
 	width: 100%;
     color: #fff;
     position: fixed;
@@ -73,10 +81,10 @@ tr:nth-child(even) {
 .heada{
     margin: 100px 10% 20px 10%;
     width: 80%;
-    padding: 20px 40px ;
+    padding: 5px 40px ;
     background: rgba(0, 0, 0,.7);
+    background: white;
     box-sizing: border-box;
-    box-shadow: 0 15px 15px rgba(0, 0, 0,.5);
     border-radius: 15px;
     text-align: center;
     color: #fff;
@@ -85,8 +93,8 @@ tr:nth-child(even) {
     font-size: 40px;
     color: #00bcd4;
 }.heada h3{
-    margin-top: -30px;
-    font-size: 25px;
+    font-size: 20px;
+    /* padding: 0px; */
     color: #00bcd4;
 }
 .heada a{
@@ -101,8 +109,8 @@ tr:nth-child(even) {
     width: 90%;
     padding: 20px 20px ;
     background: rgba(0, 0, 0,.8);
+    background: white;
     box-sizing: border-box;
-    box-shadow: 0 15px 15px rgba(0, 0, 0,.5);
     border-radius: 10px;
     color:  white;
     text-align: left;
