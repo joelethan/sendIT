@@ -8,17 +8,21 @@ function addUser(e) {
     let last_name = document.getElementById('lname').value;
     let username = document.getElementById('username').value;
     let email = document.getElementById('email').value;
-    let password = document.getElementById('password1').value;
+    let password1 = document.getElementById('password1').value;
     let password2 = document.getElementById('password2').value;
 
+    if (password1 === password2) {
+        password = password1
+    } else {
+        alert('Passwords do not match')
+    }
 
     let data = {
         first_name: first_name,
         last_name: last_name,
         username: username,
         email: email,
-        password: password,
-        password2: password2
+        password : password 
     }
     // console.log(data)
     fetch(url, {
