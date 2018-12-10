@@ -1,5 +1,5 @@
 document.getElementById('yipy').addEventListener('submit', addUser);
-const url = 'https://joelweek2.herokuapp.com/auth/login';
+const url = 'http://127.0.0.1:5003/auth/login';
 
 function addUser(e) {
     e.preventDefault();
@@ -22,7 +22,8 @@ function addUser(e) {
             if ((response.message).includes('successful')) {
                 window.location.href = 'order.html';
                 localStorage.setItem("access_token", response.token);
-                // alert(response.message)
+                localStorage.setItem("user", response.user);
+                // alert(response.user)
             } else {
                 alert(response.message);             
             }

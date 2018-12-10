@@ -6,6 +6,8 @@ body{
     background-image: url("../img/bckgrnd.jpeg") ;
     background: #3d9aa7;
     background: #eeeeee;
+    background: #808080;
+    background: #666;
     background-attachment:fixed;
     background-size: cover;
 }
@@ -48,10 +50,6 @@ td input:hover, td input:focus{
     border-radius: 4px;
 }
 
-tr:nth-child(even) {
-    background-color: #3d9aa7;
-}
-
 tr:nth-child(odd) {
     /* background-color: black; */
     color: #666
@@ -60,8 +58,9 @@ tr:nth-child(odd) {
 
 
 .topnav {
-    padding: 30px 0;
+    padding: 10px 0;
     background: rgba(0, 0, 0,.7);
+    background: #867979;
     /* background: white; */
 	width: 100%;
     color: #fff;
@@ -72,11 +71,16 @@ tr:nth-child(odd) {
    margin-left: 16px;
 }
 .topnav a{
-    padding: 10px 10px;
+    padding: 5px 10px;
     text-decoration: none;
     display: inline;
     background-color: #00bcd4;
+    background: transparent;
     border-radius: 5px;
+    color: white;
+}
+.topnav a:hover{
+    background: #3d9aa7;
 }
 .heada{
     margin: 100px 10% 20px 10%;
@@ -85,7 +89,7 @@ tr:nth-child(odd) {
     background: rgba(0, 0, 0,.7);
     background: white;
     box-sizing: border-box;
-    border-radius: 15px;
+    /* border-radius: 15px; */
     text-align: center;
     color: #fff;
 }
@@ -95,7 +99,7 @@ tr:nth-child(odd) {
 }.heada h3{
     font-size: 20px;
     /* padding: 0px; */
-    color: #00bcd4;
+    color: #666;
 }
 .heada a{
     text-decoration: none;
@@ -111,7 +115,7 @@ tr:nth-child(odd) {
     background: rgba(0, 0, 0,.8);
     background: white;
     box-sizing: border-box;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     color:  white;
     text-align: left;
 }
@@ -155,7 +159,7 @@ img{
             display: none; 
             position: fixed; 
             z-index: 1; /* Sit on top */
-            padding-top: 300px; 
+            padding-top: 100px; 
             left: 0;
             top: 0;
             width: 100%;

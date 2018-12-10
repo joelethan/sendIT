@@ -5,6 +5,7 @@ body{
     background-image: url("../img/bckgrnd.jpeg");
     background: #eeeeee;
     background: #00bcd4;
+    background: #808080;
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -45,6 +46,9 @@ body{
     padding: 0;
     color: #666;
     text-align: center;
+}
+.box-right a{
+    color: #666;
 }
 .box p{
     margin-bottom: 10px;

@@ -1,5 +1,5 @@
 document.getElementById('yipy').addEventListener('submit', addUser);
-const url = 'https://joelweek2.herokuapp.com/auth/signup';
+const url = 'http://127.0.0.1:5003/auth/signup';
 
 function addUser(e) {
     e.preventDefault();

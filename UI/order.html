@@ -12,15 +12,26 @@
     <body>
         <div class="topnav">
             <div class="links">
-                <a class="active" href="order.html">Home</a>
+                <a class="active" href="order.html">SendIT</a>
                 <a href="details.html">Details</a>
                 <div class="btn-logout">
+                    Welcome, <span id="user" href="details.html"></span>
                     <a onclick="logOut();" href="index.html">Logout</a>
                 </div>
             </div>
         </div>
+
+    <div id="myOrder" class="modal">
+        <div class="modal-content">
+            <span id="close" class="close">&times;</span>
+            <table>
+                <thead id="one_order">
+                </thead>
+            </table>
+        </div>
+    </div>
         <div class="heada">
-            <h2>SendIT</h2>
+            <!-- <h2>SendIT</h2> -->
             <p>SendIT is a courier service that helps users deliver parcels to different destinations. SendIT provides courier quotes based on weight categories.</p>
         </div>
 
@@ -29,7 +40,7 @@
             <div class="box-container">
             <h2>Order Details </h2>
             <!-- action="javascript:myFunc();" -->
-            <form method="POST" id="yipy">
+            <form method="POST" id="yipy" >
                     <div class="inputbox">
                         <input type="text" id="pickup" required>
                         <label >Pickup Place:</label>
@@ -43,7 +54,7 @@
                         <label >Weight (in Kg):</label>
                     </div>
                     <div class="submt">
-                        <input type="submit" name="" value="Place Order">
+                        <input type="submit" name="" value="Place Order" onsubmit="viewbtn(2);">
                     </div>
 
             </form>
@@ -59,5 +70,6 @@
         <script src="static/js/order.js"></script>
         <script src="static/js/logout.js"></script>
         <script src="static/js/checkuser.js"></script>
+        <script src="static/js/details.js"></script>
     </body>
 </html>

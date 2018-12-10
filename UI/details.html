@@ -17,6 +17,7 @@
             <a class="active" href="order.html">SendIT</a>
             <a href="details.html">Details</a>
             <div class="btn-logout">
+                <span id="user" ></span>
                 <a onclick="logOut();" href="index.html">Logout</a>
             </div>
         </div>
@@ -25,17 +26,8 @@
     
         <div class="modal-content">
             <span id="close" class="close">&times;</span>
-            <!-- <p id="pop">Some text in the Modal..</p> -->
             <table>
-                <thead>
-                    <tr>
-                        <h3>Order</h3>
-                        <td>Order ID: ${data.Order.parcel_id}</td><br>
-                        <td>User ID: ${data.Order.user_id}</td><br>
-                        <td>Pick-up Location: ${data.Order.pickup_location}</td><br>
-                        <td>Present Location: ${data.Order.present_location}</td><br>
-                        <td>Delivery Location: ${data.Order.destination}</td><br>
-                    </tr>
+                <thead id="one_order">
                 </thead>
             </table>
         </div>

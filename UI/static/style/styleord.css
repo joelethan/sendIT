@@ -3,25 +3,61 @@ body{
     padding: 0;
     font-family: sans-serif;
     background-image: url("../img/bckgrnd.jpeg") ;
+    background: #eeeeee;
+    background: #808080;
+    background: #666;
     background-repeat: no-repeat;
     background-size: cover;
     /* background: #3d9aa7; */
 }
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    color: #666;
+}
+td input{
+    background-color: transparent;
+    color: #666;
+    border-bottom: 1px solid black;
+    border: none;
+    outline: none;
+    font-size: 18px;
+}
+td input:hover, td input:focus{
+    background-color: wheat;
+    color: #666;
+    border-radius: 4px;
+}
+
+tr:nth-child(odd) {
+    /* background-color: black; */
+    color: #666
+}
+
 .box{
     float: left;
     position: relative;
     left: 50%;
     transform: translate(-50%,-50%);
-    width: 90%; 
+    width: 60%; 
     box-sizing: border-box;
     border-radius: 15px;
-    margin-top: 12%
+    margin-top: 14%
 }
 .box-container{
     padding: 20px 5%;
     background: rgba(0, 0, 0,.8);
-    box-shadow: 0 15px 15px rgba(0, 0, 0,.5);
-    border-radius: 15px 15px 15px 15px;
+    background: white;
+    /* box-shadow: 0 15px 15px rgba(0, 0, 0,.5); */
+    /* border-radius: 15px 15px 15px 15px; */
     width: 90%;
     float: right;
 }
@@ -29,6 +65,7 @@ body{
     margin-bottom: 20px;
     padding: 0;
     color: #fff;
+    color: #666;
     text-align: center;
 }
 .box .inputbox{
@@ -37,6 +74,7 @@ body{
 .box .inputbox input{
     width: 100%;
     color: white;
+    color: #666;
     padding: 10px 0;
     font-size: 16px;
     margin-bottom: 30px;
@@ -52,6 +90,7 @@ body{
     top: 0;
     left: 0;
     color: white;
+    color: #666;
     padding: 10px 0;
     font-size: 16px;
     pointer-events: none;
@@ -76,10 +115,12 @@ body{
     border-radius: 5px; 
 }
 .topnav {
-    padding: 30px 0;
+    padding: 10px 0;
     background: rgba(0, 0, 0,.5);
+    background: #867979;
 	width: 100%;
     color: #fff;
+    color: white;
     position: fixed;
     top: 0;
 }
@@ -87,11 +128,13 @@ body{
    margin-left: 16px;
 }
 .topnav a{
-    padding: 10px 10px;
+    padding: 5px 10px;
     text-decoration: none;
     display: inline;
     background-color: #00bcd4;
+    background: transparent;
     border-radius: 5px;
+    color: white;
 }
 .topnav a:hover{
     background: #3d9aa7;
@@ -103,13 +146,15 @@ body{
 .heada{
     margin: 100px 10% 20px 10%;
     width: 80%;
-    padding: 20px 40px ;
+    padding: 10px 40px ;
     background: rgba(0, 0, 0,.7);
+    background: white;
     /* box-shadow: 0 15px 15px rgba(0, 0, 0,.5); */
     box-sizing: border-box;
-    border-radius: 15px;
+    /* border-radius: 15px; */
     text-align: center;
     color: #fff;
+    color: #666;
 }
 .heada h2{
     font-size: 40px;
@@ -145,7 +190,38 @@ body{
         padding-top: 10px;
         margin: 3% 5%;
     }
-}
+}/* View Order */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; 
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 90%;
+        }
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
 @media screen and (max-width: 900px) {
     .box{
         margin-top: 25%;

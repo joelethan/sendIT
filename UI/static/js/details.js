@@ -1,12 +1,12 @@
 window.addEventListener('load', getParcel);
-const url = 'https://joelweek2.herokuapp.com/api/v1/parcels';
+// const url = ;
 
 function getParcel(e) {
     e.preventDefault();
 
 
 
-    fetch(url, {
+    fetch('http://127.0.0.1:5003/api/v1/parcels', {
 
         headers: {
             'Content-Type': 'application/json',
@@ -61,8 +61,8 @@ function updateDestination(e, id) {
     }
     let order_id = id
 
-    let url = `https://joelweek2.herokuapp.com/api/v1/parcels/${order_id}/destination`;
-    fetch(url, {
+    // let url = ;
+    fetch(`http://127.0.0.1:5003/api/v1/parcels/${order_id}/destination`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -94,8 +94,8 @@ function updatePresentLocal(e, id) {
     }
     let order_id = id
 
-    let url = `https://joelweek2.herokuapp.com/api/v1/parcels/${order_id}/presentLocation`;
-    fetch(url, {
+    // let url = ;
+    fetch(`http://127.0.0.1:5003/api/v1/parcels/${order_id}/presentLocation`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -129,8 +129,8 @@ function updateStatus(e, id) {
     }
     let order_id = id
 
-    let url = `https://joelweek2.herokuapp.com/api/v1/parcels/${order_id}/status`;
-    fetch(url, {
+    // let url = ;
+    fetch(`http://127.0.0.1:5003/api/v1/parcels/${order_id}/status`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -139,16 +139,17 @@ function updateStatus(e, id) {
         body: JSON.stringify(data)
     })
     .then(res => res.json())
-    .then(response => {
-        if (response.msg) {
+    .then(data => {
+        alert(data.message);
+        // if (response.msg) {
             // alert('You have been logged out. Please login again');
-            window.location.href = 'index.html';
-        }
-        if ((response.message).includes('Parcel status Updated to')) {
-        } else {
-            alert(response.message);
-            window.location.reload()
-        }
+            // window.location.href = 'index.html';
+        // }
+        // if ((response.message).includes('Parcel status Updated to')) {
+        // } else {
+            // alert(response.message);
+            // window.location.reload()
+        // }
     })
 };
 
@@ -166,8 +167,8 @@ function viewbtn(id) {
     // }
     // let order_id = id
 
-    let url = `https://joelweek2.herokuapp.com/api/v1/parcels/${id}`;
-    fetch(url, {
+    // let url = ;
+    fetch(`http://127.0.0.1:5003/api/v1/parcels/${id}`, {
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${localStorage.getItem("access_token")}`
@@ -177,17 +178,33 @@ function viewbtn(id) {
         .then(data => {
             if (data.msg) {
                 window.location.href = 'index.html';
-            } outpnut = `
-                <tr>
-                    <h3>Order</h3>
-                    <td>Order ID: ${data.Order.parcel_id}</td><br>
-                    <td>User ID: ${data.Order.user_id}</td><br>
-                    <td>Pick-up Location: ${data.Order.pickup_location}</td><br>
-                    <td>Present Location: ${data.Order.present_location}</td><br>
-                    <td>Delivery Location: ${data.Order.destination}</td><br>
-                <tr>`
+            } output = `
+                    <tr>
+                        <p><td>Order ID: </td>
+                        <td>${data.Order.parcel_id}</td></p>
+                    </tr>
+                    <tr>
+                        <p><td>User ID: </td>
+                        <td>${data.Order.user_id}</td></p>
+                    </tr>
+                    <tr>
+                        <td>Pick-up Location: </td><br>
+                        <td>${data.Order.pickup_location}</td><br>
+                    </tr>
+                    <tr>
+                        <td>Present Location: </td><br>
+                        <td>${data.Order.present_location}</td><br>
+                    </tr>
+                    <tr>
+                        <td>Delivery Location: </td><br>
+                        <td>${data.Order.destination}</td><br>
+                    </tr>
+                    <tr>
+                        <td>Order Status: </td><br>
+                        <td>${data.Order.status}</td><br>
+                    </tr>`
 
-            document.querySelector('#pop').innerHTML = output;
+            document.querySelector('#one_order').innerHTML = output;
         })
 };
 
@@ -196,11 +213,55 @@ var order = document.getElementById('myOrder');
 var span = document.getElementById("close");
 
 span.onclick = function () {
+    window.location.reload();
     order.style.display = "none";
 }
 
 window.onclick = function (event) {
     if (event.target == order) {
+        window.location.reload();
         order.style.display = "none";
     }
 }
+
+document.getElementById('yipy').addEventListener('submit', placeOrder);
+// const url = ;
+
+function placeOrder(e) {
+    e.preventDefault();
+
+    let pickup_location = document.getElementById('pickup').value;
+    let destination = document.getElementById('destination').value;
+    let weight = document.getElementById('weight').value;
+
+
+    let data = {
+        pickup_location: pickup_location,
+        present_location: pickup_location,
+        destination: destination,
+        weight: parseFloat(weight)
+    }
+    console.log(data)
+    fetch('http://127.0.0.1:5003/api/v1/parcels', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem("access_token")}`,
+        },
+        body: JSON.stringify(data)
+    })
+        .then(res => res.json())
+        .then(response => {
+            if (response.msg) {
+                // alert('You have been logged out. Please login again');
+                window.location.href = 'index.html';
+            }
+            if ((response.message).includes('Order placed')) {
+                // alert(response.message)
+                // alert(response.Order.parcel_id)
+                viewbtn(response.Order.parcel_id)
+            } else {
+                alert(response.message);
+            }
+        })
+};
