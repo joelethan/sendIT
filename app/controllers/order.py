@@ -46,8 +46,17 @@ class Orderz:
         if not type(destination) == str:
             return jsonify({'message':'Destination must be String'}), 400
 
+        if not destination.strip():
+            return jsonify({'message':'destination cannot be empty'}), 400
 
-        db.place_order(current_user['id'], weight, pickup_location, present_location, destination)
+        if not pickup_location.strip():
+            return jsonify({'message':'pickup_location cannot be empty'}), 400
+
+        if not present_location.strip():
+            return jsonify({'message':'present_location cannot be empty'}), 400
+
+
+        db.place_order(current_user['id'], current_user['user'], weight, pickup_location.strip(), present_location.strip(), destination.strip())
         order = db.get_created_parcel()
         order = Orderz.list_to_dict(order)
         return jsonify({'message':'Order placed', 'Order' :  order}), 201
@@ -85,7 +94,7 @@ class Orderz:
         return jsonify({'message' : 'You only view Orders you placed'}), 400 
 
     def update_dest(self, parcel_id, data):
-
+        
         current_user = get_jwt_identity()
         order = db.get_an_order('parcel_id', parcel_id)
         if not order:
@@ -172,9 +181,11 @@ class Orderz:
             "parcel_id": order[0],
             "weight": order[1],
             "user_id": order[2],
-            "pickup_location": order[3],
-            "destination": order[4],
-            "present_location": order[5],
-            "status": order[6]
+            "username": order[3],
+            "pickup_location": order[4],
+            "destination": order[5],
+            "present_location": order[6],
+            "status": order[7],
+            "date": order[8]
         }
         return output 

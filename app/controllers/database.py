@@ -26,15 +26,16 @@ class DatabaseConnection:
 		""" Create all database tables"""
 
 		create_table = "CREATE TABLE IF NOT EXISTS users \
-			( user_id SERIAL PRIMARY KEY, username VARCHAR(20), \
+			( user_id SERIAL PRIMARY KEY, username VARCHAR(20) UNIQUE, \
 			email VARCHAR(100), password VARCHAR(100), admin BOOLEAN NOT NULL);"
 		self.cursor.execute(create_table)
 
 		create_table = "CREATE TABLE IF NOT EXISTS parcel_orders \
 			( parcel_id SERIAL PRIMARY KEY, weight FLOAT,\
 			user_id INTEGER NOT NULL REFERENCES users(user_id), \
+			username VARCHAR(20) NOT NULL REFERENCES users(username), \
 			pickup_location VARCHAR(20), destination VARCHAR(20), \
-			present_location VARCHAR(20), status VARCHAR(20));"
+			present_location VARCHAR(20), status VARCHAR(20), date DATE NOT NULL DEFAULT LOCALTIMESTAMP(0));"
 		self.cursor.execute(create_table)
 
 
@@ -62,11 +63,11 @@ class DatabaseConnection:
 		self.cursor.execute(query)
 
 
-	def place_order(self, user_id, weight, pickup_location, present_location, destination):
-		query = "INSERT INTO parcel_orders (user_id, weight, pickup_location, \
+	def place_order(self, user_id, username, weight, pickup_location, present_location, destination):
+		query = "INSERT INTO parcel_orders (user_id, username, weight, pickup_location, \
 			present_location, destination, status)\
-			VALUES ('{}', '{}', '{}','{}', '{}', 'New');\
-			".format(user_id, weight, pickup_location, present_location, destination)
+			VALUES ('{}', '{}', '{}', '{}','{}', '{}', 'New');\
+			".format(user_id, username, weight, pickup_location, present_location, destination)
 		self.cursor.execute(query)
 
 
