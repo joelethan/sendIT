@@ -258,3 +258,10 @@ tr:nth-child(odd) {
         margin: 3% 15%;
     }
 }
+.algolia-autocomplete {
+    display: inline !important;
+  }
+.ap-input-icon.ap-icon-pin {
+    /* cursor: initial; */
+    display: none;
+}

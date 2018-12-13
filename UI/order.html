@@ -42,16 +42,16 @@
             <!-- action="javascript:myFunc();" -->
             <form method="POST" id="yipy" >
                     <div class="inputbox">
-                        <input type="text" id="pickup" required>
-                        <label >Pickup Place:</label>
+                        <input type="text" id="pickup" placeholder="Pickup Place:" required>
+                        <!-- <label >Pickup Place:</label> -->
                     </div>
                     <div class="inputbox">
-                        <input type="text" id="destination" required>
-                        <label >Deliver To:</label>
+                        <input type="text" id="destination" placeholder="Deliver To:" required>
+                        <!-- <label >Deliver To:</label> -->
                     </div>
                     <div class="inputbox">
-                        <input type="text" id="weight" required>
-                        <label >Weight (in Kg):</label>
+                        <input type="text" id="weight" placeholder="Weight (in Kg):" required>
+                        <!-- <label >Weight (in Kg):</label> -->
                     </div>
                     <div class="submt">
                         <input type="submit" name="" value="Place Order" onsubmit="viewbtn(2);">
@@ -71,5 +71,24 @@
         <script src="static/js/logout.js"></script>
         <script src="static/js/checkuser.js"></script>
         <script src="static/js/details.js"></script>
+        <script>
+            function placesSearch(){
+                var input = document.getElementById('pickupId');
+                var autoComplete = new google.maps.places.AutoComplete(input);
+            }
+        </script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAv-aOaKKjYG92bHEUoulmiOzKPfTKL6oU&libraries=places&callback=placesSearch"></script>
+        <script src="https://cdn.jsdelivr.net/npm/places.js@1.14.0"></script>
+        <script>
+                var placesAutocomplete = places({
+                  appId: "pl613ANSQGXP",
+                  apiKey: "8e86a5d4d2548bc985e821935a9b84f7",
+                  container: document.querySelector('#pickup')
+                }).configure({
+                    aroundLatLng: latlng.lat + ',' + latlng.lng, // Paris latitude longitude
+                    aroundRadius: 10 * 1000, // 10km radius
+                    type: 'address'
+                });
+              </script>
     </body>
 </html>

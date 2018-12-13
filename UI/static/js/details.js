@@ -6,7 +6,7 @@ function getParcel(e) {
 
 
 
-    fetch('http://127.0.0.1:5003/api/v1/parcels', {
+    fetch('https://joelweek2.herokuapp.com/api/v1/parcels', {
 
         headers: {
             'Content-Type': 'application/json',
@@ -24,36 +24,24 @@ function getParcel(e) {
                 output += `
                 <tr>
                     <td>${parcel.parcel_id}</td>
-                    <td>${parcel.user_id}</td>
-                    <td>${parcel.pickup_location}</td>
+                    <td>${parcel.username}</td>
                     <td>
                         ${tah}
                     </td>
-                    <td>
-                        <input type="text" onblur="updateDestination(event,${parcel.parcel_id});" value="${parcel.destination}">
-                    </td>
-                    <td>${parcel.weight}</td>
-                    <td>${parcel.status}</td>
-                    <td>
-                        <select id="mySelect" onchange="updateStatus(event,${parcel.parcel_id});">
-                            <option value="New">status</option>
-                            <option value="New">New</option>
-	                        <option value="intransit">In-transit</option>
-	                        <option value="cancelled">Cancelled</option>
-	                        <option value="delivered">Delivered</option>
-                        </select>
-                    </td>
+
+                    
+                    
                     <td><button onclick="viewbtn(${parcel.parcel_id});">View</button></td>
                 </tr>`;
             });
 
-            document.querySelector('tbody').innerHTML = output;
+            document.querySelector('#all_orders').innerHTML = output;
         })
     };
 function updateDestination(e, id) {
     new_dest = e.target.value;
     // id = id;
-    console.log(new_dest);
+    // console.log(new_dest);
 
 
     let data = {
@@ -62,7 +50,7 @@ function updateDestination(e, id) {
     let order_id = id
 
     // let url = ;
-    fetch(`http://127.0.0.1:5003/api/v1/parcels/${order_id}/destination`, {
+    fetch(`https://joelweek2.herokuapp.com/api/v1/parcels/${order_id}/destination`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -73,12 +61,12 @@ function updateDestination(e, id) {
         .then(res => res.json())
         .then(response => {
             if (response.msg) {
-                alert('You have been logged out. Please login again');
+                // aelert('You have been logged out. Please login again');
                 window.location.href = 'index.html';
             }
             if ((response.message).includes('Parcel destination Updated to')) {
             } else {
-                alert(response.message);
+                // aelert(response.message);
                 window.location.reload()
             }
         })
@@ -95,7 +83,7 @@ function updatePresentLocal(e, id) {
     let order_id = id
 
     // let url = ;
-    fetch(`http://127.0.0.1:5003/api/v1/parcels/${order_id}/presentLocation`, {
+    fetch(`https://joelweek2.herokuapp.com/api/v1/parcels/${order_id}/presentLocation`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -106,12 +94,12 @@ function updatePresentLocal(e, id) {
         .then(res => res.json())
         .then(response => {
             if (response.msg) {
-                alert('You have been logged out. Please login again');
+                // aelert('You have been logged out. Please login again');
                 window.location.href = 'index.html';
             }
             if ((response.message).includes('Parcel present location Updated to')) {
             } else {
-                alert(response.message);
+                // aelert(response.message);
                 window.location.reload()
             }
         })
@@ -130,7 +118,7 @@ function updateStatus(e, id) {
     let order_id = id
 
     // let url = ;
-    fetch(`http://127.0.0.1:5003/api/v1/parcels/${order_id}/status`, {
+    fetch(`https://joelweek2.herokuapp.com/api/v1/parcels/${order_id}/status`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -140,14 +128,14 @@ function updateStatus(e, id) {
     })
     .then(res => res.json())
     .then(data => {
-        alert(data.message);
+        // aelert(data.message);
         // if (response.msg) {
-            // alert('You have been logged out. Please login again');
+            // aelert('You have been logged out. Please login again');
             // window.location.href = 'index.html';
         // }
         // if ((response.message).includes('Parcel status Updated to')) {
         // } else {
-            // alert(response.message);
+            // aelert(response.message);
             // window.location.reload()
         // }
     })
@@ -168,7 +156,7 @@ function viewbtn(id) {
     // let order_id = id
 
     // let url = ;
-    fetch(`http://127.0.0.1:5003/api/v1/parcels/${id}`, {
+    fetch(`https://joelweek2.herokuapp.com/api/v1/parcels/${id}`, {
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${localStorage.getItem("access_token")}`
@@ -184,8 +172,8 @@ function viewbtn(id) {
                         <td>${data.Order.parcel_id}</td></p>
                     </tr>
                     <tr>
-                        <p><td>User ID: </td>
-                        <td>${data.Order.user_id}</td></p>
+                        <p><td>Username: </td>
+                        <td>${data.Order.username}</td></p>
                     </tr>
                     <tr>
                         <td>Pick-up Location: </td><br>
@@ -197,11 +185,15 @@ function viewbtn(id) {
                     </tr>
                     <tr>
                         <td>Delivery Location: </td><br>
-                        <td>${data.Order.destination}</td><br>
+                        <td><input type="text"  value="${data.Order.destination}"></td><br>
                     </tr>
                     <tr>
                         <td>Order Status: </td><br>
                         <td>${data.Order.status}</td><br>
+                    </tr>
+                    <tr>
+                        <td>Created On: </td><br>
+                        <td>${data.Order.date}</td><br>
                     </tr>`
 
             document.querySelector('#one_order').innerHTML = output;
@@ -242,7 +234,7 @@ function placeOrder(e) {
         weight: parseFloat(weight)
     }
     console.log(data)
-    fetch('http://127.0.0.1:5003/api/v1/parcels', {
+    fetch('https://joelweek2.herokuapp.com/api/v1/parcels', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -253,15 +245,15 @@ function placeOrder(e) {
         .then(res => res.json())
         .then(response => {
             if (response.msg) {
-                // alert('You have been logged out. Please login again');
+                // aelert('You have been logged out. Please login again');
                 window.location.href = 'index.html';
             }
             if ((response.message).includes('Order placed')) {
-                // alert(response.message)
-                // alert(response.Order.parcel_id)
+                // aelert(response.message)
+                // aelert(response.Order.parcel_id)
                 viewbtn(response.Order.parcel_id)
             } else {
-                alert(response.message);
+                // aelert(response.message);
             }
         })
 };
