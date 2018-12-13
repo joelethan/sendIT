@@ -185,7 +185,7 @@ function viewbtn(id) {
                     </tr>
                     <tr>
                         <td>Delivery Location: </td><br>
-                        <td><input type="text"  value="${data.Order.destination}"></td><br>
+                        <td><input type="text" onblur="updatePresentLocal(event,${parcel.parcel_id});" value="${data.Order.destination}"></td><br>
                     </tr>
                     <tr>
                         <td>Order Status: </td><br>
