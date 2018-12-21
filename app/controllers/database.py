@@ -5,12 +5,16 @@ import os
 class DatabaseConnection:
 	def __init__(self):
 		try:
+			# postgres = "ddqts6ki9k1l1r"
 			postgres = "sendit"
 			if os.getenv('APP_SETTINGS') == 'testing':
 				postgres = "test_db"
 			self.connection = psycopg2.connect(database=postgres,
+								# user="wkwcyfqrkphlfc",
 								user="postgres",
+								# host="ec2-174-129-41-12.compute-1.amazonaws.com",
 								host="localhost",
+								# password="44a313d7ef9109d23ea6bf37034166ca9491a96179f8d6b794337224e22b7539",
 								password="postgres",
 								port="5432")
 			self.connection.autocommit = True
@@ -26,15 +30,16 @@ class DatabaseConnection:
 		""" Create all database tables"""
 
 		create_table = "CREATE TABLE IF NOT EXISTS users \
-			( user_id SERIAL PRIMARY KEY, username VARCHAR(20), \
+			( user_id SERIAL PRIMARY KEY, username VARCHAR(20) UNIQUE, \
 			email VARCHAR(100), password VARCHAR(100), admin BOOLEAN NOT NULL);"
 		self.cursor.execute(create_table)
 
 		create_table = "CREATE TABLE IF NOT EXISTS parcel_orders \
 			( parcel_id SERIAL PRIMARY KEY, weight FLOAT,\
 			user_id INTEGER NOT NULL REFERENCES users(user_id), \
-			pickup_location VARCHAR(20), destination VARCHAR(20), \
-			present_location VARCHAR(20), status VARCHAR(20));"
+			username VARCHAR(20) NOT NULL REFERENCES users(username), \
+			pickup_location VARCHAR(255), destination VARCHAR(255), \
+			present_location VARCHAR(255), status VARCHAR(20), date DATE NOT NULL DEFAULT LOCALTIMESTAMP(0));"
 		self.cursor.execute(create_table)
 
 
@@ -62,11 +67,11 @@ class DatabaseConnection:
 		self.cursor.execute(query)
 
 
-	def place_order(self, user_id, weight, pickup_location, present_location, destination):
-		query = "INSERT INTO parcel_orders (user_id, weight, pickup_location, \
+	def place_order(self, user_id, username, weight, pickup_location, present_location, destination):
+		query = "INSERT INTO parcel_orders (user_id, username, weight, pickup_location, \
 			present_location, destination, status)\
-			VALUES ('{}', '{}', '{}','{}', '{}', 'New');\
-			".format(user_id, weight, pickup_location, present_location, destination)
+			VALUES ('{}', '{}', '{}', '{}','{}', '{}', 'New');\
+			".format(user_id, username, weight, pickup_location, present_location, destination)
 		self.cursor.execute(query)
 
 
@@ -77,7 +82,7 @@ class DatabaseConnection:
 
 
 	def get_orders(self):
-		query = "SELECT * FROM parcel_orders;"
+		query = "SELECT * FROM parcel_orders ORDER BY parcel_id ASC;"
 		self.cursor.execute(query)
 		orders = self.cursor.fetchall()
 		return orders

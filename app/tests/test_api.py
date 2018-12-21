@@ -410,3 +410,75 @@ class APITestCase(TestCase):
             content_type='application/json'
             )
         self.assertEqual(response1.status_code, 200) 
+        
+        
+    def test_update_parcel_destination(self):
+        self.client.post('/auth/signup', data=json.dumps(self.user_signUp),
+                            content_type='application/json')
+        login_resp = self.client.post('/auth/login', data=json.dumps(self.user_login), 
+                            content_type='application/json')
+        access_token = json.loads(login_resp.data.decode())
+        response1 = self.client.post(
+            '/api/v1/parcels',
+            headers={'Authorization': 'Bearer ' + access_token['token']},
+            content_type='application/json',
+            data=json.dumps(self.parcel)
+            )
+        response2 = self.client.put(
+            '/api/v1/parcels/1/destination',
+            headers={'Authorization': 'Bearer ' + access_token['token']},
+            content_type='application/json',
+            data=json.dumps({'destination':'destination'})
+            )
+        self.assertEqual(response2.status_code, 200)
+        
+        
+    def test_update_parcel_status(self):
+        self.client.post('/auth/signup', data=json.dumps(self.user_signUp),
+                            content_type='application/json')
+        login_resp = self.client.post('/auth/login', data=json.dumps(self.user_login), 
+                            content_type='application/json')
+        access_token = json.loads(login_resp.data.decode())
+        response1 = self.client.post(
+            '/api/v1/parcels',
+            headers={'Authorization': 'Bearer ' + access_token['token']},
+            content_type='application/json',
+            data=json.dumps(self.parcel)
+            )
+        response2 = self.client.put(
+            '/api/v1/parcels/1/status',
+            headers={'Authorization': 'Bearer ' + access_token['token']},
+            content_type='application/json',
+            data=json.dumps({'status':'status'})
+            )
+        self.assertEqual(response2.status_code, 200)
+        
+        
+    def test_update_parcel_presentLocation(self):
+        self.client.post('/auth/signup', data=json.dumps(self.user_signUp),
+                            content_type='application/json')
+        login_resp = self.client.post('/auth/login', data=json.dumps(self.user_login), 
+                            content_type='application/json')
+        access_token = json.loads(login_resp.data.decode())
+        response1 = self.client.post(
+            '/api/v1/parcels',
+            headers={'Authorization': 'Bearer ' + access_token['token']},
+            content_type='application/json',
+            data=json.dumps(self.parcel)
+            )
+        response2 = self.client.put(
+            '/api/v1/parcels/1/presentLocation',
+            headers={'Authorization': 'Bearer ' + access_token['token']},
+            content_type='application/json',
+            data=json.dumps({'present_location':'Andela'})
+            )
+        self.assertEqual(response2.status_code, 200)
+
+    def test_page_not_found(self):
+        response = self.client.get('/api/v1/url')
+        self.assertEqual(response.status_code, 404)
+
+    def internal_server_error(self):
+        response = self.client.post('/auth/signup', data=json.dumps(self.user_signUp),
+                            content_type='')
+        self.assertEqual(response.status_code, 500)

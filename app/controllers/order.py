@@ -46,11 +46,20 @@ class Orderz:
         if not type(destination) == str:
             return jsonify({'message':'Destination must be String'}), 400
 
+        if not destination.strip():
+            return jsonify({'message':'destination cannot be empty'}), 400
 
-        db.place_order(current_user['id'], weight, pickup_location, present_location, destination)
+        if not pickup_location.strip():
+            return jsonify({'message':'pickup_location cannot be empty'}), 400
+
+        if not present_location.strip():
+            return jsonify({'message':'present_location cannot be empty'}), 400
+
+
+        db.place_order(current_user['id'], current_user['user'], weight, pickup_location.strip(), present_location.strip(), destination.strip())
         order = db.get_created_parcel()
         order = Orderz.list_to_dict(order)
-        return jsonify({'Order' :  order}), 201
+        return jsonify({'message':'Order placed', 'Order' :  order}), 201
 
     def get_orders(self):
         
@@ -92,7 +101,7 @@ class Orderz:
             return jsonify({'message' : 'Parcel not found!!'}), 400
 
         if current_user['id'] != db.get_user_id(parcel_id):
-            return jsonify({'message' : 'You only view Orders you placed'}), 400
+            return jsonify({'message' : 'You only edit Orders you placed'}), 400
 
         validate = db.validate_data('destination', list(data.keys()))
         if validate:
@@ -133,8 +142,8 @@ class Orderz:
             return jsonify({'message':'Status must be String'}), 400
         if not status.strip():
             return jsonify({'message':'Status cannot be empty'}), 400
-        if not status.title() in ['New','Transportation','Cancelled','Delivered']:
-            return jsonify({'message':"Status must be in the given list: ['New','Transportation','Cancelled','Delivered']"})
+        if not status.title() in ['New','Intransit','Cancelled','Delivered']:
+            return jsonify({'message':"Status must be in the given list: ['New','Intransit','Cancelled','Delivered']"})
 
         db.update_status(parcel_id, (status).strip().title())
         return jsonify({'message' : 'Parcel status Updated to {}'.format(status.title())}), 200
@@ -172,9 +181,11 @@ class Orderz:
             "parcel_id": order[0],
             "weight": order[1],
             "user_id": order[2],
-            "pickup_location": order[3],
-            "destination": order[4],
-            "present_location": order[5],
-            "status": order[6]
+            "username": order[3],
+            "pickup_location": order[4],
+            "destination": order[5],
+            "present_location": order[6],
+            "status": order[7],
+            "date": order[8]
         }
         return output 

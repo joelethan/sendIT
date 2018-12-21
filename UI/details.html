@@ -1,121 +1,66 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>sendIT</title>
-        <meta charset="utf-8">
-        <meta name="keywords" lang="en-us" content="Events, plot, night life">
-        <meta name="viewports" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="HandheldFriendly" content="true">
-        <link rel="stylesheet" href="static/style/styledm.css">
-    </head>
-    <body>
-        <div class="topnav">
-            <div class="links">
-                <a class="active" href="order.html">Home</a>
-                <div class="btn-logout">
-                    <a href="index.html">Logout</a>
-                </div>
+
+<head>
+    <title>sendIT</title>
+    <meta charset="utf-8">
+    <meta name="keywords" lang="en-us" content="Events, plot, night life">
+    <meta name="viewports" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+    <link rel="stylesheet" href="static/style/styledm.css">
+</head>
+
+<body>
+    <div class="topnav">
+        <div class="links">
+            <a class="active" href="order.html">Home</a>
+            <a href="details.html">Details</a>
+            <div class="btn-logout">
+                <a onclick="logOut();" href="index.html">Logout</a>
             </div>
         </div>
-        <div class="heada">
-            <h2>SendIT</h2>
-            <h3>Order Details</h3>
+    </div>
+    <div id="myOrder" class="modal">
+    
+        <div class="modal-content">
+            <span id="close" class="close">&times;</span>
+            <p>Some text in the Modal..</p>
         </div>
-        
-        <div class="detail">
-                
-            <hr>     
-            <table>
+    
+    </div>
+    <div class="heada">
+        <h2>SendIT</h2>
+        <h3>Order Details</h3>
+    </div>
+
+    <div class="detail">
+
+        <hr>
+        <table>
+            <thead>
                 <tr>
                     <th>Order ID</th>
+                    <th>User ID</th>
                     <th>Pickup Location</th>
                     <th>Present Location</th>
                     <th>Delivery Location</th>
                     <th>Weight (in Kg)</th>
                     <th>Status</th>
-                    <th>Update</th>
+                    <th></th>
+                    <th>View</th>
                 </tr>
-                <tr>
-                    <td>001</td>
-                    <td>Kamokya</td>
-                    <td>Kamokya</td>
-                    <td><input type="text" name="" value="Makerere" required></td>
-                    <td>3.0</td>
-                    <td>
-                        <form action="">
-                            <input type="checkbox" name="Status" value="cancel"> Cancel Order
-                        </form>
-                    </td>
-                    <td><button>Update</button></td>
-                </tr>
-                <tr>
-                    <td>002</td>
-                    <td>Kamokya</td>
-                    <td>Kamokya</td>
-                    <td><input type="text" name="" value="Kyambogo" required></td>
-                    <td>2.0</td>
-                    <td>
-                        <form action="">
-                            <input type="checkbox" name="Status" value="cancel"> Cancel Order
-                        </form>
-                    </td>
-                    <td><button>Update</button></td>
-            </tr>
-            <tr>
-                <td>003</td>
-                <td>Kamokya</td>
-                <td>Kamokya</td>
-                <td><input type="text" name="" value="Kawempe" required></td>
-                <td>5.0</td>
-                <td>
-                    <form action="">
-                        <input type="checkbox" name="Status" value="cancel"> Cancel Order
-                    </form>
-                </td>
-                <td><button>Update</button></td>
-            </tr>
-            <tr>
-                <td>004</td>
-                <td>Kamokya</td>
-                <td>Kamokya</td>
-                <td><input type="text" name="" value="Kiwatule" required></td>
-                <td>4.5</td>
-                <td>
-                    <form action="">
-                        <input type="checkbox" name="Status" value="cancel"> Cancel Order
-                    </form>
-                </td>
-                <td><button>Update</button></td>
-            </tr>
-            <tr>
-              <td>005</td>
-              <td>Kamokya</td>
-              <td>Kamokya</td>
-              <td><input type="text" name="" value="Kisasi" required></td>
-              <td>4.0</td>
-              <td>
-                  <form action="">
-                      <input type="checkbox" name="Status" value="cancel"> Cancel Order
-                  </form>
-              </td>
-              <td><button>Update</button></td>
-        </tr>
-        <tr>
-            <td>006</td>
-            <td>Kamokya</td>
-            <td>Kamokya</td>
-            <td><input type="text" name="" value="Entebbe" required></td>
-            <td>7.0</td>
-            <td>
-                <form action="">
-                    <input type="checkbox" name="Status" value="cancel"> Cancel Order
-                </form>
-            </td>
-            <td><button>Update</button></td>
-        </tr>
-    </table>
-    <hr>
-</div>
+            </thead>
+            <tbody>
+            </tbody>
+
+
+        </table>
+
+        <hr>
+    </div><script src="static/js/details.js"></script>
+    <script src="static/js/logout.js"></script>
+    <script src="static/js/checkuser.js"></script>
 </body>
-</html> 
+
+</html>
